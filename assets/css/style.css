@@ -1,0 +1,15 @@
+.login-loader{
+	display: none;
+}
+.alert.error{
+	padding: 0px !important;
+}
+#content .content-body{
+	border: 1px solid lightgray !important;
+}
+.form-loader{
+	display: none;
+}
+.cat-error{
+	font-size: 14px !important; 
+}
