@@ -190,7 +190,9 @@
 						<li class="nav-dropdown"><a href="#"><i class="zmdi zmdi-shopping-cart"></i>Shop</a>
 							<ul class="nav-sub">
 								<li><a href="ecommerce-dashboard.html">Dashboard</a></li>
-								<li><a href="ecommerce-products.html">Products</a></li>
+								<li><?php echo anchor('admin/products_list','Manage product'); ?>
+								<!-- <a href="ecommerce-products.html">Products</a> -->
+								</li>
 								
 								<!-- <li><a href="ecommerce-customers.html">Customers</a></li> -->
 								<li><a href="ecommerce-settings.html">Settings</a></li>

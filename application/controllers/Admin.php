@@ -23,7 +23,12 @@ class Admin extends CI_Controller
 
 	}
 
+	
 
+	public function index() {
+
+		 $this->dashboard();		
+	}
 
 	public function dashboard() {
 
@@ -37,6 +42,8 @@ class Admin extends CI_Controller
 	public function create_category() {
 
 		$data['main_content'] = 'admin/create_category';
+		$data['categories']	 = $this->adminModel->all_category();
+	
 
 		$this->load->view('admin_includes/template',$data);			
 
@@ -47,8 +54,10 @@ class Admin extends CI_Controller
 
 		if ($this->input->post('category')) {
 
+
 			unset($_POST['category']);
 
+			// print_r($_POST);
 			$result = $this->adminModel->create_category();
 
 			echo json_encode($result);
@@ -61,4 +70,34 @@ class Admin extends CI_Controller
 
 	}
 
+
+
+	public function products_list() {
+
+		$data['main_content'] = 'admin/product_list';
+
+		$this->load->view('admin_includes/template',$data); 
+	}
+
+	public function upload_image() {
+
+
+		echo $this->adminModel->upload_image();
+
+	}
+
+
+	public function add_product() {
+
+		if ($this->input->post('add_product')) {
+			
+			$result = $this->adminModel->add_product();
+
+			echo json_encode($result);
+
+		} else {
+
+			$this->index();
+		}
+	}
 }

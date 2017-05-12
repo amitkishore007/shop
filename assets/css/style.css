@@ -12,4 +12,17 @@
 }
 .cat-error{
 	font-size: 14px !important; 
+}.
+/*.card-heading .success-msg{
+	display: none;
+}*/
+#content_wrapper #header_wrapper {
+	min-height: 100px !important;
+	height: 100px !important;
+}
+.product-loader{
+    position: absolute;
+    top: 50%;
+    left: 45%;
+   
 }

@@ -52,6 +52,9 @@ $('document').ready(function(){
 		var parent_id = $('.parent_cat').val();
 		var cat_desc = $('.cat_desc').val();
 
+	    $('.error').html('');
+		
+
 		console.log(cat_name+" "+parent_id+" "+cat_desc);
 		
 
@@ -79,16 +82,20 @@ $('document').ready(function(){
 
 				if (data.status=='false') {
 
-					$('.cat_name').html(data.name);
-					$('.parent_cat').html(data.parent);
-					$('.cat_desc').html(data.desc);
+					$('.name-error').html(data.name);
+					$('.cat-error').html(data.parent);
+					$('.desc-error').html(data.desc);
 					
 				} else {
 
-					window.location = '';
+					$('.card-heading .card-title').after('<h2 class="text-center success-msg alert alert-success">Successfully created category</h2>');
+					$('.cat_name').val('');
+					$('.cat_desc').val('');
+					$('.success-msg').fadeOut(5000)
+
+					window.location = ajax_url+'admin/';
 
 				}
-
 				
 			}
 
@@ -97,5 +104,71 @@ $('document').ready(function(){
 	});
 
 
+	Dropzone.options.myAwesomeDropzone = {
+	  paramName: "file", // The name that will be used to transfer the file
+	  maxFilesize: 5, // MB
+	  accept: function(file, done) {
+	  
+		done();
+	  }
+	};
+
+
+	$('.add_product').on('click',function(e){
+
+		e.preventDefault();
+		
+		var product_name      = $('.product_name     ').val();
+		var product_desc      = $('#add_product_desc ').val();
+		var product_price     = $('.product_price    ').val();
+		var product_compare   = $('.product_compare  ').val();
+		var product_status    = $('.product_status   ').val();
+		var product_sku       = $('.product_sku      ').val();
+		var product_shipping  = $('.product_shipping ').val();
+		var product_quantity  = $('.product_quantity ').val();
+		var product_cat  	  = $('.product_cat ').val();
+		
+		// console.log(product_name+" "+product_desc+" "+product_price+" "+product_compare+" "+product_status+" "+product_sku +" "+product_barcode+" "+product_inventory+" "+product_width+" "+product_height+" "+product_depth+" "+product_weight+" "+product_unit+" "+product_shipping );
+
+		
+
+		$.ajax({
+
+			url: ajax_url+"admin/add_product",
+			
+			type: "POST",
+			
+			data: {
+					'add_product':'add_product',
+					title : product_name,     
+					description : product_desc ,
+					price : product_price,
+					compare_price : product_compare,
+					status : product_statu,
+					sku : product_sku ,
+					shipping : product_shipping,
+					quantity : product_quantity	
+				},
+			
+			beforeSend :function(){
+
+				$('.form-loader').show();
+			},
+			success :function(html) {
+
+				$('.form-loader').hide();
+
+				console.log(html);
+
+
+			}
+
+
+		});
+
+
+
+		return false;
+	});
 
 });
